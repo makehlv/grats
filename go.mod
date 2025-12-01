@@ -1,4 +1,4 @@
-module github.com/meehighlov/grats
+module github.com/makehlv/grats
 
 go 1.23
 
@@ -25,6 +25,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
+	github.com/makehlv/tgbot v0.0.1 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect

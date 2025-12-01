@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/meehighlov/grats/pkg/telegram"
+	tgbot "github.com/makehlv/tgbot"
 )
 
-func (s *Service) Start(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) Start(ctx context.Context, scope *tgbot.Scope) error {
 	message := scope.Update().GetMessage()
 
 	err := s.db.Tx(ctx, func(ctx context.Context) error {

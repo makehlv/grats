@@ -3,8 +3,8 @@ package state
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/infra/redis"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/infra/redis"
 )
 
 type Repository struct {

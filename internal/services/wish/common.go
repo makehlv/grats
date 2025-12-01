@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/internal/repositories/wish_list"
-	"github.com/meehighlov/grats/pkg/telegram"
-	inlinekeyboard "github.com/meehighlov/grats/pkg/telegram/builders/inline_keyboard"
+	"github.com/makehlv/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/wish_list"
+	tgbot "github.com/makehlv/tgbot"
+	inlinekeyboard "github.com/makehlv/tgbot/builders/inline_keyboard"
 )
 
 func (s *Service) PickFirstWishList(ctx context.Context, userId string) (*models.WishList, error) {
@@ -24,7 +24,7 @@ func (s *Service) PickFirstWishList(ctx context.Context, userId string) (*models
 	return wishList[0], nil
 }
 
-func (s *Service) BuildEntityButtons(scope *telegram.Scope, wishes []*models.Wish, offset int, callback func(id string, offset int) string) *inlinekeyboard.Builder {
+func (s *Service) BuildEntityButtons(scope *tgbot.Scope, wishes []*models.Wish, offset int, callback func(id string, offset int) string) *inlinekeyboard.Builder {
 	buttons := scope.Keyboard()
 	for _, entity := range wishes {
 		buttonText := entity.ButtonText()

@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/meehighlov/grats/pkg/telegram"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	tgbot "github.com/makehlv/tgbot"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) Support(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) Support(ctx context.Context, scope *tgbot.Scope) error {
 	keyboard := scope.Keyboard()
 
 	callbackDataBuilder := scope.CallbackData()
@@ -27,7 +27,7 @@ func (s *Service) Support(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) SupportWrite(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) SupportWrite(ctx context.Context, scope *tgbot.Scope) error {
 	keyboard := scope.Keyboard()
 	callbackData := scope.CallbackData()
 
@@ -42,7 +42,7 @@ func (s *Service) SupportWrite(ctx context.Context, scope *telegram.Scope) error
 	return nil
 }
 
-func (s *Service) CancelSupportCall(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) CancelSupportCall(ctx context.Context, scope *tgbot.Scope) error {
 	s.repositories.Cache.Reset(ctx, scope.Update().GetChatIdStr())
 
 	if err := scope.DeleteMessage(ctx, scope.Update().GetChatIdStr(), strconv.Itoa(scope.Update().CallbackQuery.Message.MessageId)); err != nil {
@@ -53,7 +53,7 @@ func (s *Service) CancelSupportCall(ctx context.Context, scope *telegram.Scope) 
 	return nil
 }
 
-func (s *Service) SendSupportMessage(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) SendSupportMessage(ctx context.Context, scope *tgbot.Scope) error {
 	message := scope.Update().GetMessage()
 
 	if len(message.Text) > 2000 {
@@ -88,7 +88,7 @@ func (s *Service) SendSupportMessage(ctx context.Context, scope *telegram.Scope)
 	return nil
 }
 
-func (s *Service) ProcessSupportReply(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) ProcessSupportReply(ctx context.Context, scope *tgbot.Scope) error {
 	message := scope.Update().GetMessage()
 
 	if message.GetChatIdStr() != s.cfg.SupportChatId {

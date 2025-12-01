@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/pkg/telegram/fsm"
+	"github.com/makehlv/grats/internal/repositories/models"
+	tgbotfsm "github.com/makehlv/tgbot/fsm"
 )
 
 var ErrStateNotFound = errors.New("state not found")
@@ -24,7 +24,7 @@ func (s StoreResult) IsFound() bool {
 	return s.isFound
 }
 
-func (r *Repository) GetState(ctx context.Context, key string) (fsm.StoreResult, error) {
+func (r *Repository) GetState(ctx context.Context, key string) (tgbotfsm.StoreResult, error) {
 	state, err := r.createState(ctx, key)
 	isfound := true
 	if err == ErrStateNotFound {

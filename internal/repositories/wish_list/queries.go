@@ -3,7 +3,7 @@ package wish_list
 import (
 	"context"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/models"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

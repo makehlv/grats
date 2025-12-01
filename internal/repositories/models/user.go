@@ -5,10 +5,10 @@ import (
 )
 
 type User struct {
-	// telegram user -> bot's user
+	// tgbot user -> bot's user
 	BaseFields
 
-	TgId       string `gorm:"uniqueIndex;not null;column:tg_id;type:varchar"` // id will be taken from telegram
+	TgId       string `gorm:"uniqueIndex;not null;column:tg_id;type:varchar"` // id will be taken from tgbot
 	Name       string `gorm:"not null;column:name;type:varchar"`
 	TgUsername string `gorm:"not null;column:tg_username;type:varchar"`
 	ChatId     string `gorm:"column:chat_id;type:varchar"` // chatId - id of chat with user, bot uses it to send notification

@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"

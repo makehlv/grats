@@ -4,16 +4,16 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/builders"
-	"github.com/meehighlov/grats/internal/clients"
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/infra/postgres"
-	"github.com/meehighlov/grats/internal/repositories"
-	"github.com/meehighlov/grats/pkg/telegram"
+	"github.com/makehlv/grats/internal/builders"
+	"github.com/makehlv/grats/internal/clients"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/infra/postgres"
+	"github.com/makehlv/grats/internal/repositories"
+	tgbot "github.com/makehlv/tgbot"
 )
 
 type UserRegistration interface {
-	RegisterOrUpdateUser(ctx context.Context, scope *telegram.Scope) error
+	RegisterOrUpdateUser(ctx context.Context, scope *tgbot.Scope) error
 }
 
 type Service struct {

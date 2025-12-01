@@ -10,12 +10,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/pkg/telegram"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	"github.com/makehlv/grats/internal/repositories/models"
+	tgbot "github.com/makehlv/tgbot"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) EditPrice(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) EditPrice(ctx context.Context, scope *tgbot.Scope) error {
 	scope.Reply(ctx, s.cfg.Constants.ENTER_PRICE)
 
 	s.repositories.Cache.AppendText(ctx, scope.Update().GetChatIdStr(), scope.Update().CallbackQuery.Data)
@@ -26,7 +26,7 @@ func (s *Service) EditPrice(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) SaveEditPrice(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) SaveEditPrice(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)
@@ -63,7 +63,7 @@ func (s *Service) SaveEditPrice(ctx context.Context, scope *telegram.Scope) erro
 	return nil
 }
 
-func (s *Service) EditLink(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) EditLink(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)
@@ -98,7 +98,7 @@ func (s *Service) EditLink(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) SaveEditLink(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) SaveEditLink(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)
@@ -153,7 +153,7 @@ func (s *Service) SaveEditLink(ctx context.Context, scope *telegram.Scope) error
 	return nil
 }
 
-func (s *Service) DeleteLink(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) DeleteLink(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)
@@ -175,7 +175,7 @@ func (s *Service) DeleteLink(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) EditWishName(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) EditWishName(ctx context.Context, scope *tgbot.Scope) error {
 	scope.Reply(ctx, s.cfg.Constants.ENTER_NEW_WISH_NAME)
 
 	s.repositories.Cache.AppendText(ctx, scope.Update().GetChatIdStr(), scope.Update().CallbackQuery.Data)
@@ -186,7 +186,7 @@ func (s *Service) EditWishName(ctx context.Context, scope *telegram.Scope) error
 	return nil
 }
 
-func (s *Service) SaveEditWishName(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) SaveEditWishName(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)

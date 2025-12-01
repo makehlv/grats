@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/ilyakaznacheev/cleanenv"
-	tgc "github.com/meehighlov/grats/pkg/telegram/config"
+	tgbotconfig "github.com/makehlv/tgbot/config"
 )
 
 type txContextKey string
@@ -29,7 +29,7 @@ type Config struct {
 	SupportChatId         string       `env:"SUPPORT_CHAT_ID" env-required:"true"`
 	TxKey                 txContextKey `env:"TX_KEY" env-default:"tx"`
 
-	Telegram tgc.Config
+	TgBot tgbotconfig.Config
 
 	RunMigrations bool   `env:"RUN_MIGRATIONS" env-default:"false"`
 	MigrationsDir string `env:"MIGRATIONS_DIR" env-default:"grats-migrations"`

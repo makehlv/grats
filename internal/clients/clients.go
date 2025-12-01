@@ -3,7 +3,7 @@ package clients
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/config"
 )
 
 type Clients struct{}

@@ -4,11 +4,11 @@ import (
 	"context"
 	"strings"
 
-	"github.com/meehighlov/grats/pkg/telegram"
+	tgbot "github.com/makehlv/tgbot"
 )
 
-func SupportReplyCondition(supportChatId string) telegram.Condition {
-	return func(ctx context.Context, scope *telegram.Scope) (bool, error) {
+func SupportReplyCondition(supportChatId string) tgbot.Condition {
+	return func(ctx context.Context, scope *tgbot.Scope) (bool, error) {
 		if scope.Update().GetMessage() != nil &&
 			scope.Update().GetMessage().GetChatIdStr() == supportChatId &&
 			scope.Update().GetMessage().IsReply() {
@@ -19,8 +19,8 @@ func SupportReplyCondition(supportChatId string) telegram.Condition {
 	}
 }
 
-func ShowSharedListCondition() telegram.Condition {
-	return func(ctx context.Context, scope *telegram.Scope) (bool, error) {
+func ShowSharedListCondition() tgbot.Condition {
+	return func(ctx context.Context, scope *tgbot.Scope) (bool, error) {
 		command := scope.Update().GetMessage().GetCommand()
 
 		if strings.HasPrefix(command, "/start") {

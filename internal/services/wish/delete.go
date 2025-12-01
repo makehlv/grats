@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/pkg/telegram"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	"github.com/makehlv/grats/internal/repositories/models"
+	tgbot "github.com/makehlv/tgbot"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) DeleteWish(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) DeleteWish(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)
@@ -46,7 +46,7 @@ func (s *Service) DeleteWish(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) ConfirmDeleteWish(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) ConfirmDeleteWish(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)

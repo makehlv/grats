@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/config"
 	"github.com/redis/go-redis/v9"
 )
 

@@ -4,7 +4,7 @@ import (
 	"log"
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/config"
 
 	"github.com/natefinch/lumberjack"
 )

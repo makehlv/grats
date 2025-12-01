@@ -3,16 +3,16 @@ package services
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/builders"
-	"github.com/meehighlov/grats/internal/clients"
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/infra/postgres"
-	"github.com/meehighlov/grats/internal/repositories"
-	"github.com/meehighlov/grats/internal/services/common"
-	"github.com/meehighlov/grats/internal/services/support"
-	"github.com/meehighlov/grats/internal/services/user"
-	"github.com/meehighlov/grats/internal/services/wish"
-	"github.com/meehighlov/grats/internal/services/wishlist"
+	"github.com/makehlv/grats/internal/builders"
+	"github.com/makehlv/grats/internal/clients"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/infra/postgres"
+	"github.com/makehlv/grats/internal/repositories"
+	"github.com/makehlv/grats/internal/services/common"
+	"github.com/makehlv/grats/internal/services/support"
+	"github.com/makehlv/grats/internal/services/user"
+	"github.com/makehlv/grats/internal/services/wish"
+	"github.com/makehlv/grats/internal/services/wishlist"
 )
 
 type Services struct {

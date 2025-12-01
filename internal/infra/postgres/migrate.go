@@ -8,8 +8,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/migrations"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/migrations"
 	"github.com/pressly/goose/v3"
 	"gorm.io/gorm"
 )

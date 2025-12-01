@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/models"
 )
 
 func newChatContext(chatId string) *models.ChatContext {

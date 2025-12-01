@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/config"
 	"gorm.io/gorm"
 )
 

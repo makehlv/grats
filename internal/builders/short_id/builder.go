@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/config"
 )
 
 type Builder struct {

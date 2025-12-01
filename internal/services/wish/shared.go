@@ -6,15 +6,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/internal/repositories/wish"
-	"github.com/meehighlov/grats/internal/repositories/wish_list"
-	"github.com/meehighlov/grats/pkg/telegram"
-	inlinekeyboard "github.com/meehighlov/grats/pkg/telegram/builders/inline_keyboard"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	"github.com/makehlv/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/wish"
+	"github.com/makehlv/grats/internal/repositories/wish_list"
+	tgbot "github.com/makehlv/tgbot"
+	inlinekeyboard "github.com/makehlv/tgbot/builders/inline_keyboard"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) ShareWishList(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) ShareWishList(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wishlist []*models.WishList
 	)
@@ -59,7 +59,7 @@ func (s *Service) ShareWishList(ctx context.Context, scope *telegram.Scope) erro
 	return nil
 }
 
-func (s *Service) ShowSharedWishlist(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) ShowSharedWishlist(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wishes     []*models.Wish
 		count      int64
@@ -152,7 +152,7 @@ func (s *Service) ShowSharedWishlist(ctx context.Context, scope *telegram.Scope)
 	return nil
 }
 
-func (s *Service) buildSharedWishlistMarkup(scope *telegram.Scope, wishes []*models.Wish, totalmodels int, offset int, sourceId string) *inlinekeyboard.Builder {
+func (s *Service) buildSharedWishlistMarkup(scope *tgbot.Scope, wishes []*models.Wish, totalmodels int, offset int, sourceId string) *inlinekeyboard.Builder {
 	keyboard := scope.Keyboard()
 
 	keyboard.AppendAsLine(
@@ -169,7 +169,7 @@ func (s *Service) buildSharedWishlistMarkup(scope *telegram.Scope, wishes []*mod
 }
 
 func (s *Service) buildSharedWishInfoKeyboard(
-	scope *telegram.Scope,
+	scope *tgbot.Scope,
 	wish *models.Wish,
 	offset,
 	sourceId string,

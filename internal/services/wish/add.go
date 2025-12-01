@@ -9,14 +9,14 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/internal/repositories/wish"
-	"github.com/meehighlov/grats/pkg/telegram"
-	inlinekeyboard "github.com/meehighlov/grats/pkg/telegram/builders/inline_keyboard"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	"github.com/makehlv/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/wish"
+	tgbot "github.com/makehlv/tgbot"
+	inlinekeyboard "github.com/makehlv/tgbot/builders/inline_keyboard"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) AddWish(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) AddWish(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wishListId string
 		userId     string
@@ -58,7 +58,7 @@ func (s *Service) AddWish(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) SaveWish(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) SaveWish(ctx context.Context, scope *tgbot.Scope) error {
 	message := scope.Update().GetMessage()
 	userId := strconv.Itoa(message.From.Id)
 	texts, err := s.repositories.Cache.GetTexts(ctx, scope.Update().GetChatIdStr())
@@ -117,7 +117,7 @@ func (s *Service) SaveWish(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) buildWishNavigationMarkup(scope *telegram.Scope, wishId, wishListId string) *inlinekeyboard.Builder {
+func (s *Service) buildWishNavigationMarkup(scope *tgbot.Scope, wishId, wishListId string) *inlinekeyboard.Builder {
 	keyboard := scope.Keyboard()
 
 	keyboard.AppendAsStack(

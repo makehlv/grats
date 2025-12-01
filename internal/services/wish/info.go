@@ -4,13 +4,13 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/pkg/telegram"
-	inlinekeyboard "github.com/meehighlov/grats/pkg/telegram/builders/inline_keyboard"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	"github.com/makehlv/grats/internal/repositories/models"
+	tgbot "github.com/makehlv/tgbot"
+	inlinekeyboard "github.com/makehlv/tgbot/builders/inline_keyboard"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) WishInfo(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) WishInfo(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		wish *models.Wish
 	)
@@ -44,7 +44,7 @@ func (s *Service) WishInfo(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) buildWishInfoKeyboard(scope *telegram.Scope, wish *models.Wish, offset string) *inlinekeyboard.Builder {
+func (s *Service) buildWishInfoKeyboard(scope *tgbot.Scope, wish *models.Wish, offset string) *inlinekeyboard.Builder {
 	keyboard := scope.Keyboard()
 	callbackData := scope.CallbackData()
 

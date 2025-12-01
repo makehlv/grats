@@ -3,10 +3,10 @@ package common
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/builders"
-	"github.com/meehighlov/grats/internal/clients"
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/repositories"
+	"github.com/makehlv/grats/internal/builders"
+	"github.com/makehlv/grats/internal/clients"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/repositories"
 )
 
 type UserRegistration struct {

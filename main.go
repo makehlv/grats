@@ -1,6 +1,6 @@
 package main
 
-import "github.com/meehighlov/grats/internal/app"
+import "github.com/makehlv/grats/internal/app"
 
 func main() {
 	app.Run()

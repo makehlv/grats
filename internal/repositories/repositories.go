@@ -3,14 +3,14 @@ package repositories
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/infra/postgres"
-	"github.com/meehighlov/grats/internal/infra/redis"
-	"github.com/meehighlov/grats/internal/repositories/cache"
-	"github.com/meehighlov/grats/internal/repositories/state"
-	"github.com/meehighlov/grats/internal/repositories/user"
-	"github.com/meehighlov/grats/internal/repositories/wish"
-	"github.com/meehighlov/grats/internal/repositories/wish_list"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/infra/postgres"
+	"github.com/makehlv/grats/internal/infra/redis"
+	"github.com/makehlv/grats/internal/repositories/cache"
+	"github.com/makehlv/grats/internal/repositories/state"
+	"github.com/makehlv/grats/internal/repositories/user"
+	"github.com/makehlv/grats/internal/repositories/wish"
+	"github.com/makehlv/grats/internal/repositories/wish_list"
 )
 
 type Repositories struct {

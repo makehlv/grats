@@ -4,12 +4,12 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/internal/repositories/wish_list"
-	"github.com/meehighlov/grats/pkg/telegram"
+	"github.com/makehlv/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/wish_list"
+	tgbot "github.com/makehlv/tgbot"
 )
 
-func (u *UserRegistration) RegisterOrUpdateUser(ctx context.Context, scope *telegram.Scope) error {
+func (u *UserRegistration) RegisterOrUpdateUser(ctx context.Context, scope *tgbot.Scope) error {
 	message := scope.Update().GetMessage()
 
 	userId := strconv.Itoa(message.From.Id)

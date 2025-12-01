@@ -3,8 +3,8 @@ package builders
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/builders/short_id"
-	"github.com/meehighlov/grats/internal/config"
+	"github.com/makehlv/grats/internal/builders/short_id"
+	"github.com/makehlv/grats/internal/config"
 )
 
 type Builders struct {

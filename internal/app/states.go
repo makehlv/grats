@@ -3,57 +3,57 @@ package app
 import (
 	"context"
 
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/repositories"
-	"github.com/meehighlov/grats/internal/services"
-	"github.com/meehighlov/grats/pkg/telegram"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/repositories"
+	"github.com/makehlv/grats/internal/services"
+	tgbot "github.com/makehlv/tgbot"
 )
 
 func RegisterHandlers(
-	b *telegram.Bot,
+	b *tgbot.Bot,
 	s *services.Services,
 	cfg *config.Config,
 	repositories *repositories.Repositories,
 ) {
 	c := cfg.Constants
 
-	resetUserCache := func(ctx context.Context, scope *telegram.Scope) error {
+	resetUserCache := func(ctx context.Context, scope *tgbot.Scope) error {
 		return repositories.Cache.Reset(ctx, scope.Update().GetChatIdStr())
 	}
 
 	b.AddMiddleware(
-		func(ctx context.Context, scope *telegram.Scope) error {
+		func(ctx context.Context, scope *tgbot.Scope) error {
 			return scope.AnswerCallbackQuery(ctx)
 		},
 	)
 
 	b.AddHandler(
 		s.User.Start,
-		telegram.Command(c.CMD_START),
+		tgbot.Command(c.CMD_START),
 	)
 
 	// ------------------------ support --------------------------------
 
 	b.AddHandler(
 		s.Support.Support,
-		telegram.Command(c.CMD_SUPPORT),
+		tgbot.Command(c.CMD_SUPPORT),
 	)
 
 	supportWrite := b.AddHandler(
 		s.Support.SupportWrite,
-		telegram.CallbackDataContains(c.CMD_SUPPORT_WRITE),
-		telegram.BeforeAction(resetUserCache),
+		tgbot.CallbackDataContains(c.CMD_SUPPORT_WRITE),
+		tgbot.BeforeAction(resetUserCache),
 	)
 
 	b.AddHandler(
 		s.Support.SendSupportMessage,
-		telegram.MessageHasText(),
-		telegram.AcceptFrom(supportWrite),
+		tgbot.MessageHasText(),
+		tgbot.AcceptFrom(supportWrite),
 	)
 
 	b.AddHandler(
 		s.Support.CancelSupportCall,
-		telegram.CallbackDataContains(c.CMD_SUPPORT_CANCEL),
+		tgbot.CallbackDataContains(c.CMD_SUPPORT_CANCEL),
 	)
 
 	b.AddHandler(
@@ -65,91 +65,91 @@ func RegisterHandlers(
 
 	addWish := b.AddHandler(
 		s.Wish.AddWish,
-		telegram.CallbackDataContains(c.CMD_ADD_TO_WISH),
-		telegram.BeforeAction(resetUserCache),
+		tgbot.CallbackDataContains(c.CMD_ADD_TO_WISH),
+		tgbot.BeforeAction(resetUserCache),
 	)
 
 	b.AddHandler(
 		s.Wish.SaveWish,
-		telegram.MessageHasText(),
-		telegram.AcceptFrom(addWish),
+		tgbot.MessageHasText(),
+		tgbot.AcceptFrom(addWish),
 	)
 
 	b.AddHandler(
 		s.Wish.List,
-		telegram.Command(c.CMD_WISHLIST),
+		tgbot.Command(c.CMD_WISHLIST),
 	)
 
 	b.AddHandler(
 		s.Wish.List,
-		telegram.CallbackDataContains(c.CMD_LIST),
+		tgbot.CallbackDataContains(c.CMD_LIST),
 	)
 
 	b.AddHandler(
 		s.Wish.WishInfo,
-		telegram.CallbackDataContains(c.CMD_WISH_INFO),
+		tgbot.CallbackDataContains(c.CMD_WISH_INFO),
 	)
 
 	b.AddHandler(
 		s.Wish.DeleteWish,
-		telegram.CallbackDataContains(c.CMD_DELETE_WISH),
+		tgbot.CallbackDataContains(c.CMD_DELETE_WISH),
 	)
 
 	b.AddHandler(
 		s.Wish.ConfirmDeleteWish,
-		telegram.CallbackDataContains(c.CMD_CONFIRM_DELETE_WISH),
+		tgbot.CallbackDataContains(c.CMD_CONFIRM_DELETE_WISH),
 	)
 
 	editWishName := b.AddHandler(
 		s.Wish.EditWishName,
-		telegram.CallbackDataContains(c.CMD_EDIT_WISH_NAME),
-		telegram.BeforeAction(resetUserCache),
+		tgbot.CallbackDataContains(c.CMD_EDIT_WISH_NAME),
+		tgbot.BeforeAction(resetUserCache),
 	)
 
 	b.AddHandler(
 		s.Wish.SaveEditWishName,
-		telegram.MessageHasText(),
-		telegram.AcceptFrom(editWishName),
+		tgbot.MessageHasText(),
+		tgbot.AcceptFrom(editWishName),
 	)
 
 	editWishLink := b.AddHandler(
 		s.Wish.EditLink,
-		telegram.CallbackDataContains(c.CMD_EDIT_LINK),
-		telegram.BeforeAction(resetUserCache),
+		tgbot.CallbackDataContains(c.CMD_EDIT_LINK),
+		tgbot.BeforeAction(resetUserCache),
 	)
 
 	b.AddHandler(
 		s.Wish.SaveEditLink,
-		telegram.MessageHasText(),
-		telegram.AcceptFrom(editWishLink),
+		tgbot.MessageHasText(),
+		tgbot.AcceptFrom(editWishLink),
 	)
 
 	editWishPrice := b.AddHandler(
 		s.Wish.EditPrice,
-		telegram.CallbackDataContains(c.CMD_EDIT_PRICE),
-		telegram.BeforeAction(resetUserCache),
+		tgbot.CallbackDataContains(c.CMD_EDIT_PRICE),
+		tgbot.BeforeAction(resetUserCache),
 	)
 
 	b.AddHandler(
 		s.Wish.SaveEditPrice,
-		telegram.MessageHasText(),
-		telegram.AcceptFrom(editWishPrice),
+		tgbot.MessageHasText(),
+		tgbot.AcceptFrom(editWishPrice),
 	)
 
 	b.AddHandler(
 		s.Wish.DeleteLink,
-		telegram.CallbackDataContains(c.CMD_DELETE_LINK),
-		telegram.AcceptFrom(editWishLink),
+		tgbot.CallbackDataContains(c.CMD_DELETE_LINK),
+		tgbot.AcceptFrom(editWishLink),
 	)
 
 	b.AddHandler(
 		s.Wish.ShareWishList,
-		telegram.CallbackDataContains(c.CMD_SHARE_WISH_LIST),
+		tgbot.CallbackDataContains(c.CMD_SHARE_WISH_LIST),
 	)
 
 	b.AddHandler(
 		s.Wish.ToggleWishLock,
-		telegram.CallbackDataContains(c.CMD_TOGGLE_WISH_LOCK),
+		tgbot.CallbackDataContains(c.CMD_TOGGLE_WISH_LOCK),
 	)
 
 	b.AddHandler(
@@ -159,21 +159,21 @@ func RegisterHandlers(
 
 	b.AddHandler(
 		s.Wish.WishInfo,
-		telegram.CallbackDataContains(c.CMD_SHOW_SWI),
+		tgbot.CallbackDataContains(c.CMD_SHOW_SWI),
 	)
 
 	b.AddHandler(
 		s.Wish.ShowSharedWishlist,
-		telegram.CallbackDataContains(c.CMD_SHOW_SWL),
+		tgbot.CallbackDataContains(c.CMD_SHOW_SWL),
 	)
 
 	b.Reset(
-		telegram.Command(c.CMD_CANCEL),
-		telegram.BeforeAction(resetUserCache),
-		telegram.AcceptFrom(supportWrite),
-		telegram.AcceptFrom(editWishName),
-		telegram.AcceptFrom(editWishLink),
-		telegram.AcceptFrom(editWishPrice),
-		telegram.AcceptFrom(addWish),
+		tgbot.Command(c.CMD_CANCEL),
+		tgbot.BeforeAction(resetUserCache),
+		tgbot.AcceptFrom(supportWrite),
+		tgbot.AcceptFrom(editWishName),
+		tgbot.AcceptFrom(editWishLink),
+		tgbot.AcceptFrom(editWishPrice),
+		tgbot.AcceptFrom(addWish),
 	)
 }

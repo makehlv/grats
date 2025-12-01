@@ -4,14 +4,14 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/meehighlov/grats/internal/repositories/models"
-	"github.com/meehighlov/grats/internal/repositories/wish"
-	"github.com/meehighlov/grats/pkg/telegram"
-	inlinekeyboard "github.com/meehighlov/grats/pkg/telegram/builders/inline_keyboard"
-	tgc "github.com/meehighlov/grats/pkg/telegram/client"
+	"github.com/makehlv/grats/internal/repositories/models"
+	"github.com/makehlv/grats/internal/repositories/wish"
+	tgbot "github.com/makehlv/tgbot"
+	inlinekeyboard "github.com/makehlv/tgbot/builders/inline_keyboard"
+	tgc "github.com/makehlv/tgbot/client"
 )
 
-func (s *Service) List(ctx context.Context, scope *telegram.Scope) error {
+func (s *Service) List(ctx context.Context, scope *tgbot.Scope) error {
 	var (
 		listId  string
 		userId  string
@@ -76,7 +76,7 @@ func (s *Service) List(ctx context.Context, scope *telegram.Scope) error {
 	return nil
 }
 
-func (s *Service) buildListMarkup(scope *telegram.Scope, totalmodels int, models []*models.Wish, offset int, listId string) *inlinekeyboard.Builder {
+func (s *Service) buildListMarkup(scope *tgbot.Scope, totalmodels int, models []*models.Wish, offset int, listId string) *inlinekeyboard.Builder {
 	callbackData := scope.CallbackData()
 	callbackDataBuilder := func(id string, offset int) string {
 		return callbackData.Build(id, s.cfg.Constants.CMD_WISH_INFO, strconv.Itoa(offset)).String()

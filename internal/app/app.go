@@ -1,14 +1,14 @@
 package app
 
 import (
-	"github.com/meehighlov/grats/internal/builders"
-	"github.com/meehighlov/grats/internal/clients"
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/infra/postgres"
-	"github.com/meehighlov/grats/internal/infra/redis"
-	"github.com/meehighlov/grats/internal/repositories"
-	"github.com/meehighlov/grats/internal/services"
-	"github.com/meehighlov/grats/pkg/telegram"
+	"github.com/makehlv/grats/internal/builders"
+	"github.com/makehlv/grats/internal/clients"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/infra/postgres"
+	"github.com/makehlv/grats/internal/infra/redis"
+	"github.com/makehlv/grats/internal/repositories"
+	"github.com/makehlv/grats/internal/services"
+	tgbot "github.com/makehlv/tgbot"
 )
 
 func Run() {
@@ -24,7 +24,7 @@ func Run() {
 	builders := builders.New(cfg, logger)
 	services := services.New(cfg, logger, repositories, clients, builders, db)
 
-	bot := telegram.New(&cfg.Telegram, logger, repositories.State)
+	bot := tgbot.New(&cfg.TgBot, logger, repositories.State)
 
 	RegisterHandlers(bot, services, cfg, repositories)
 

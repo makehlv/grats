@@ -3,8 +3,8 @@ package wish
 import (
 	"log/slog"
 
-	"github.com/meehighlov/grats/internal/config"
-	"github.com/meehighlov/grats/internal/infra/postgres"
+	"github.com/makehlv/grats/internal/config"
+	"github.com/makehlv/grats/internal/infra/postgres"
 )
 
 type Repository struct {
